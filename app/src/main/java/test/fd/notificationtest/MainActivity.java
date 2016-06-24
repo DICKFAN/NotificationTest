@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private void sendNotificationMessage(){
          NotificationManager notiManager=(NotificationManager) getSystemService(NOTIFICATION_SERVICE);
          Notification noti=buildNotification();
+        loadNotiConfiguration(noti);
          notiManager.notify(1,noti);
         Log.v("NotificationActivityLog","Send Notification Message");
     }
@@ -54,5 +55,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intentNoti=new Intent(this,NotificationActivity.class);
         Log.v("NotificationActivityLog","Finish build PendingIntent Object");
         return PendingIntent.getActivity(this,0,intentNoti,0);
+    }
+    //load config
+    private void loadNotiConfiguration(Notification notification){
+        notification.defaults|= Notification.DEFAULT_LIGHTS;
+        notification.defaults|= Notification.DEFAULT_VIBRATE;
+        notification.defaults|= Notification.DEFAULT_SOUND;
     }
 }
